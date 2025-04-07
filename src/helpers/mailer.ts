@@ -8,7 +8,7 @@ interface SendEmailOptions {
     userId: string;
 }
 
-export const sendEmail = async ({ email, emailType, userId }: SendEmailOptions) => {
+export const sendEmail = async ({ email, emailType, userId }: SendEmailOptions, p0: string, p1: string) => {
     try {
         const hashedToken = await bcryptjs.hash(userId.toString(), 10);
 
