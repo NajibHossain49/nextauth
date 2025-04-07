@@ -1,6 +1,7 @@
 import nodemailer from 'nodemailer';
 import User from "@/models/userModel";
 import bcryptjs from 'bcryptjs';
+import crypto from 'crypto';
 
 interface SendEmailOptions {
     email: string;
@@ -8,9 +9,13 @@ interface SendEmailOptions {
     userId: string;
 }
 
-export const sendEmail = async ({ email, emailType, userId }: SendEmailOptions, p0: string, p1: string) => {
+export const sendEmail = async ({ email, emailType, userId }: SendEmailOptions) => {
     try {
-        const hashedToken = await bcryptjs.hash(userId.toString(), 10);
+        // Generate a random token (not using userId directly for security)
+        const tokenData = crypto.randomBytes(32).toString('hex');
+
+        // Hash the token before storing in the database
+        const hashedToken = await bcryptjs.hash(tokenData, 10);
 
         if (emailType === "VERIFY") {
             await User.findByIdAndUpdate(userId, {
@@ -33,11 +38,12 @@ export const sendEmail = async ({ email, emailType, userId }: SendEmailOptions, 
             }
         });
 
+        // Send the hashed token in the email
         const mailOptions = {
             from: 'MNHnajib@outlook.com',
             to: email,
-            subject: emailType === "VERIFY" ? "Verify you'r Email" : "Reset you'r Password",
-            html: `<p>Click <a href="${process.env.DOMAIN}/verifyEmail?token=${hashedToken}">here</a> to ${emailType === "VERIFY" ? "Verify you'r Email" : "Reset you'r Password"}
+            subject: emailType === "VERIFY" ? "Verify your Email" : "Reset your Password",
+            html: `<p>Click <a href="${process.env.DOMAIN}/verifyEmail?token=${hashedToken}">here</a> to ${emailType === "VERIFY" ? "verify your email" : "reset your password"}
       or copy and paste the link below in your browser. <br> ${process.env.DOMAIN}/verifyEmail?token=${hashedToken}
       </p>`
         };
