@@ -60,6 +60,8 @@ function SignupPage() {
     }));
   };
 
+  // In your handleSubmit function of SignupPage.tsx, change the redirect:
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
@@ -71,8 +73,8 @@ function SignupPage() {
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
       const response = await axios.post('/api/users/signup', formData);
 
-      // Success - redirect to login or dashboard
-      router.push('/Login');
+      // Success - redirect to email verification instructions page
+      router.push('/checkEmail');
     } catch (error) {
       // Handle axios error
       if (axios.isAxiosError(error)) {
