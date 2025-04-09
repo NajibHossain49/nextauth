@@ -48,12 +48,12 @@ Create a `.env.local` file and add the following:
 
 ```env
 # MongoDB Connection URI 
-MONGODB_URI=mongodb+srv://emaJohnDB:DkRBi3GdZJWZ6G3u@cluster0.tqv0m.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0
+MONGODB_URI=<Your Credential>
 
-JWT_SECRET=your_secret_key
+JWT_SECRET=<Your Credential>
 
-SMTP_USER=4ce15e633fd4a6
-SMTP_PASS=aab08e38add417
+SMTP_USER=<Your Credential>
+SMTP_PASS=<Your Credential>
 
 DOMAIN=http://localhost:3000  
 
