@@ -4,9 +4,10 @@
 import axios from "axios";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, Suspense } from "react";
 
-export default function VerifyEmailPage() {
+// Create a client component that uses useSearchParams
+function VerifyEmailContent() {
   const searchParams = useSearchParams();
   const [status, setStatus] = useState<"idle" | "loading" | "verified" | "error">("idle");
   const [errorMessage, setErrorMessage] = useState("");
@@ -92,5 +93,26 @@ export default function VerifyEmailPage() {
         )}
       </div>
     </div>
+  );
+}
+
+// Main page component with suspense
+export default function VerifyEmailPage() {
+  return (
+    <Suspense fallback={
+      <div className="flex min-h-screen items-center justify-center bg-gray-100">
+        <div className="w-full max-w-md space-y-8 bg-white p-8 rounded-lg shadow-md text-center">
+          <h1 className="text-3xl font-bold text-gray-900">Email Verification</h1>
+          <div className="py-4">
+            <div className="animate-pulse flex justify-center">
+              <div className="h-8 w-8 bg-indigo-600 rounded-full"></div>
+            </div>
+            <p className="mt-4 text-gray-600">Loading verification page...</p>
+          </div>
+        </div>
+      </div>
+    }>
+      <VerifyEmailContent />
+    </Suspense>
   );
 }
