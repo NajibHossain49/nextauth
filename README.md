@@ -1,36 +1,120 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🔐 NextSecure
 
-## Getting Started
+**NextSecure** is a simple but powerful full-stack authentication system built with **Next.js 14**, **TypeScript**, and **MongoDB**. It provides a secure foundation for user login, sign-up, and email verification using **JWT-based authentication and authorization**.
 
-First, run the development server:
+> 🚀 Moto: *Providing secure user login with authentication and authorization.*
+
+---
+
+## ⚙️ Tech Stack
+
+- **Framework**: [Next.js 14 (App Router)](https://nextjs.org/)
+- **Language**: TypeScript
+- **Database**: MongoDB with Mongoose
+- **Authentication**: JSON Web Tokens (JWT)
+- **Email Verification**: Secure link-based verification
+
+---
+
+## ✨ Features
+
+- 🔐 Secure user **Sign Up** and **Login**
+- ✅ **Email Verification** with token validation
+- 🛡️ **Authorization** middleware for protected routes
+- 📦 Modular and clean code structure
+- 🔍 Input validation and basic error handling
+
+
+---
+
+## 📁 Basic Project Structure
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+.
+├── app/                   # Next.js App Router pages
+├── lib/                   # Utility functions (e.g. token handling, db connect)
+├── models/                # Mongoose models
+├── api/                   # API route handlers
+├── middleware/            # Auth & validation middlewares
+├── types/                 # TypeScript types and interfaces
+└── .env.local             # Environment variables
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 🔑 Environment Variables
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Create a `.env.local` file and add the following:
 
-## Learn More
+```env
+# MongoDB Connection URI 
+MONGODB_URI=mongodb+srv://emaJohnDB:DkRBi3GdZJWZ6G3u@cluster0.tqv0m.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0
 
-To learn more about Next.js, take a look at the following resources:
+JWT_SECRET=your_secret_key
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+SMTP_USER=4ce15e633fd4a6
+SMTP_PASS=aab08e38add417
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+DOMAIN=http://localhost:3000  
 
-## Deploy on Vercel
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+---
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 🚀 Getting Started
+
+```bash
+# 1. Clone the repository
+git clone https://github.com/NajibHossain49/nextsecure.git
+cd nextsecure
+
+# 2. Install dependencies
+npm install
+
+# 3. Set up environment variables
+cp .env.example .env.local
+# Fill in your own values
+
+# 4. Run the development server
+npm run dev
+```
+
+Visit `http://localhost:3000` to see it in action.
+
+---
+
+## 🔧 Available Scripts
+
+- `npm run dev` – Start dev server
+- `npm run build` – Build for production
+
+
+---
+
+## 🔐 Authentication Flow
+
+1. **Sign Up**: User registers → Email verification link is sent.
+2. **Email Verification**: User clicks link → Account gets verified.
+3. **Login**: Credentials are checked → JWT tokens are issued.
+4. **Authorization**: Protected API routes only accessible with valid token.
+
+---
+
+## 🧱 Future Improvements
+
+- Forgot password / reset password flow
+- Rate limiting and brute force protection
+- OAuth provider support (Google, GitHub, etc.)
+- 2FA (Two-Factor Authentication)
+- Dashboard and user profile management
+
+---
+
+## 🧑‍💻 Author
+
+Developed with ❤️ by **Najib Hossain**  
+[GitHub](https://github.com/NajibHossain49) | [LinkedIn](https://www.linkedin.com/in/md-najib-hossain)
+
+## 🌟 Show Your Support
+
+If you like this project, please ⭐ the repository and share it with others!
